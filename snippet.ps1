@@ -49,7 +49,7 @@ $body = "{`n    `"username`": `"$username`",`n    `"password`": `"$password`",`n
 
 try {
 	$ServicePoint = [System.Net.ServicePointManager]::FindServicePoint($environment) 
-	$response = Invoke-WebRequest "$environment/SAAS/API/1.0/REST/auth/system/login" -Method 'POST' -Headers $headers -Body $body -Proxy "http://proxy.jpmchase.net:10443" 
+	$response = Invoke-WebRequest "$environment/SAAS/API/1.0/REST/auth/system/login" -Method 'POST' -Headers $headers -Body $body 
 	$ServicePoint.CloseConnectionGroup("")
 } catch {
 	#Write-Output "Auth API Call Failed"
@@ -78,7 +78,7 @@ $headers.Add("Content-Type", "application/vnd.vmware.horizon.manager.enterprise.
 
 try {
 	$ServicePoint = [System.Net.ServicePointManager]::FindServicePoint($environment)
-	$response1 = Invoke-WebRequest "$environment/SAAS/jersey/manager/api/enterpriseservices" -Method 'GET' -Headers $headers  -Proxy "http://proxy.jpmchase.net:10443" 
+	$response1 = Invoke-WebRequest "$environment/SAAS/jersey/manager/api/enterpriseservices" -Method 'GET' -Headers $headers  
 	$ServicePoint.CloseConnectionGroup("")
 } catch {
 	#Write-Output "Get all Connector services API Call Failed"
@@ -118,7 +118,7 @@ while($x -lt $y){
 	
 	try {
 		$ServicePoint = [System.Net.ServicePointManager]::FindServicePoint($environment)
-		$response2 = Invoke-WebRequest "$environment/SAAS/jersey/manager/api/enterpriseservices/$enterpriseServiceUUID/health" -Method 'GET' -Headers $headers  -Proxy "http://proxy.jpmchase.net:10443"
+		$response2 = Invoke-WebRequest "$environment/SAAS/jersey/manager/api/enterpriseservices/$enterpriseServiceUUID/health" -Method 'GET' -Headers $headers 
 		$ServicePoint.CloseConnectionGroup("")
 	} catch {
 		#Write-Host "Get $hostname $servicetype API Call Failed" -ForegroundColor Red
